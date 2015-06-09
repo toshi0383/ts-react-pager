@@ -28,6 +28,7 @@ function getPager(o) {
     )
   }
   pageLinks.push(getNextLiElement(totalPageCount, currentPage, handler))
+
   var filtered = pageLinks.filter(function(e) {
     return Number(e.key) < e.length - 2 || Number(e.key) > 4
   })
