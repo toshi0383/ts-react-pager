@@ -20,10 +20,10 @@ var Pager = require('ts-react-pager').Pager
 var YourApp = React.createClass({
   render: function() {
     var o = {
-      dataLength:this.props.data.length,
-      handler: this.handlePaging,
-      pageSize: this.props.pageSize,
-      currentPage: this.state.currentPage
+      dataLength:this.props.data.length, // Your data's length.
+      handler: this.handlePaging, // Gets called when page is changed. You must implement your own. Otherwise crashes.
+      pageSize: this.props.pageSize, // Max display count of your data.
+      currentPage: this.state.currentPage // Your current page should be set in your state.
     }
     var pager = Pager(o)
     return (
