@@ -1,7 +1,9 @@
 var should = require('should'),
     Pager = require('../bin/pager').Pager,
     data = ["apple", "banana", "grape"],
-    handler = function() {this.good}
+    handler = function() {this.good},
+    React = require('react')
+
 function good() {
   console.log("good")
 }
@@ -11,7 +13,13 @@ var o = {
   pageSize: 1,
   currentPage: 1
 }
-var p = Pager(o)
+var p = React.createClass({
+  render:function() {
+    return {type: Pager, props: {object:o}}
+  }
+})
+console.log(p.prototype.render())
+return
 describe('#Pager.type', function() {
   it('should be ul', function() {
     p.type.should.equal('ul')
