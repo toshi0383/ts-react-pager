@@ -37,9 +37,11 @@ function getPager(o) {
   var filtered = pageLinks.filter(function(e) {
     return Number(e.key) > pageLinks.length - lastLimit || Number(e.key) < firstLimit
   })
-  filtered[4] = (
-    <li className='disabled' key='4'><a>...</a></li>
-  )
+  if (filtered.length > 8) {
+    filtered[4] = (
+      <li className='disabled' key='4'><a>...</a></li>
+    )
+  }
   return filtered
 }
 function getBackLiElement(currentPage, handler) {

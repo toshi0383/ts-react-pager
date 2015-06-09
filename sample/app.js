@@ -25,17 +25,24 @@ function getPager(o) {
       React.createElement("li", {style: {cursor:'pointer'}, 
          onClick: handler(pageNum), 
          className: aClassName, 
-         key: i + 1}, React.createElement("a", null, pageNum))
+         key: pageNum}, React.createElement("a", null, pageNum))
     )
   }
   pageLinks.push(getNextLiElement(totalPageCount, currentPage, handler))
 
+  // if this has more than 8 pages, abbreviate rest of them
+  // and put '...' into middle of them.
+  var max = 9 - 1
+  var firstLimit = max / 2
+  var lastLimit = Number(max / 2) + 2
   var filtered = pageLinks.filter(function(e) {
-    return Number(e.key) > pageLinks.length - 6 || Number(e.key) < 4
+    return Number(e.key) > pageLinks.length - lastLimit || Number(e.key) < firstLimit
   })
-  filtered[4] = (
-    React.createElement("li", {className: "disabled", key: "4"}, React.createElement("a", null, "..."))
-  )
+  if (filtered.length > 8) {
+    filtered[4] = (
+      React.createElement("li", {className: "disabled", key: "4"}, React.createElement("a", null, "..."))
+    )
+  }
   return filtered
 }
 function getBackLiElement(currentPage, handler) {
@@ -19878,15 +19885,25 @@ var data = ["apple", "banana", "grape"],
     handler = function() {console.log("test")}
 data = data.concat(["chocolate", "berry", "pine", "pumpkin", "carrot"])
 var App = React.createClass({displayName: "App",
+  getInitialState: function() {
+    return {data:data}
+  },
+  buttonHandler: function() {
+    var d = this.state.data.slice(0, this.state.data.length - 1)
+    this.setState({data:d})
+  },
   render: function() {
     var o = {
-      dataLength:data.length,
+      dataLength:this.state.data.length,
       handler: handler,
       pageSize: 1,
       currentPage: 1
     }
     return (
+      React.createElement("div", null, 
+      React.createElement("button", {onClick: this.buttonHandler}, "slice"), 
       React.createElement(Pager, {object: o})
+      )
     )
   }
 })
