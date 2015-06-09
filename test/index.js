@@ -25,7 +25,6 @@ describe('#Pager', function() {
 
 var moreData = data.concat(["chocolate", "berry", "pine", "pumpkin", "carrot"])
 var p2 = Pager(getObject(moreData))
-console.log(p2)
 describe('#Pager', function() {
   it('should have 9 elements when has more than 8 pages.', function() {
     p2.length.should.equal(9)
