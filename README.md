@@ -25,7 +25,7 @@ var YourApp = React.createClass({
       pageSize: this.props.pageSize,      // Max display count of your data.
       currentPage: this.state.currentPage // Your current page should be set in your state.
     }
-    var pager = Pager(o)
+    var pager = (<Pager object={o}>)
     return (
       <div>
         {pager}
