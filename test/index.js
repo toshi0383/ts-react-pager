@@ -1,5 +1,5 @@
 var should = require('should'),
-    Pager = require('../bin/pager').Pager,
+    Pager = require('../bin/pager').getPager,
     data = ["apple", "banana", "grape"],
     handler = function() {this.good},
     React = require('react')
@@ -13,10 +13,10 @@ var o = {
   pageSize: 1,
   currentPage: 1
 }
-var PagerFactory = React.createFactory(Pager);
-var p = React.createClass({
-  render:function() {
-    return PagerFactory({object:o})
-  }
+var p = Pager(o)
+
+describe('#Pager', function() {
+  it('should have 3 elements', function() {
+    p.length.should.equal(5)
+  });
 })
-// currently not tests here..
