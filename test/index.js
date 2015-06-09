@@ -1,7 +1,9 @@
 var should = require('should'),
-    Pager = require('../build/pager').Pager,
+    Pager = require('../bin/pager').Pager,
     data = ["apple", "banana", "grape"],
-    handler = function() {this.good}
+    handler = function() {this.good},
+    React = require('react')
+
 function good() {
   console.log("good")
 }
@@ -11,13 +13,10 @@ var o = {
   pageSize: 1,
   currentPage: 1
 }
-var p = Pager(o)
-describe('#Pager.type', function() {
-  it('should be ul', function() {
-    p.type.should.equal('ul')
-  });
-  it('should be ul', function() {
-    var children = p._store.props.children
-    children.length.should.equal(5)
-  });
+var PagerFactory = React.createFactory(Pager);
+var p = React.createClass({
+  render:function() {
+    return PagerFactory({object:o})
+  }
 })
+// currently not tests here..
