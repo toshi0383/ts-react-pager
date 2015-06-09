@@ -27,9 +27,14 @@ function getPager(o) {
          key: i}, React.createElement("a", null, pageNum))
     )
   }
-
   pageLinks.push(getNextLiElement(totalPageCount, currentPage, handler))
-  return pageLinks
+  var filtered = pageLinks.filter(function(e) {
+    return Number(e.key) < e.length - 2 || Number(e.key) > 4
+  })
+  filtered[4] = (
+    React.createElement("li", {className: "disabled", key: "4"}, React.createElement("a", null, "..."))
+  )
+  return filtered
 }
 function getBackLiElement(currentPage, handler) {
   var back

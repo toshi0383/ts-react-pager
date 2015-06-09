@@ -27,9 +27,14 @@ function getPager(o) {
          key={i}><a>{pageNum}</a></li>
     )
   }
-
   pageLinks.push(getNextLiElement(totalPageCount, currentPage, handler))
-  return pageLinks
+  var filtered = pageLinks.filter(function(e) {
+    return Number(e.key) < e.length - 2 || Number(e.key) > 4
+  })
+  filtered[4] = (
+    <li className='disabled' key='4'><a>...</a></li>
+  )
+  return filtered
 }
 function getBackLiElement(currentPage, handler) {
   var back
