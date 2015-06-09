@@ -1,7 +1,9 @@
 # ts-react-pager
-Super simple pager component
+Super simple pager component.
 
 ![screenshot](./resources/ss.png)
+
+*This sample uses [bootswatch theme](https://bootswatch.com/journal/)
 
 # install
 ```
