@@ -1,6 +1,6 @@
 {
   "name": "ts-react-pager",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Super simple pager component",
   "main": "bin/pager.js",
   "scripts": {
