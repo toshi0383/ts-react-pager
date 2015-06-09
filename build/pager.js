@@ -33,7 +33,7 @@ module.exports = {
     }
     pageLinks.push(li)
     return (
-      React.createElement("div", null, 
+      React.createElement("ul", {className: "pagination"}, 
         pageLinks
       )
     )
