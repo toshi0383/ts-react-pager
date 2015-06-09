@@ -29,6 +29,7 @@ function getPager(o) {
   }
   pageLinks.push(getNextLiElement(totalPageCount, currentPage, handler))
 
+  // if this has more than 8 pages, abbreviate rest of them.
   var filtered = pageLinks.filter(function(e) {
     return Number(e.key) > pageLinks.length - 6 || Number(e.key) < 4
   })
