@@ -1,6 +1,8 @@
 # ts-react-pager
 Super simple pager component
 
+![screenshot](./resources/ss.png)
+
 # install
 ```
 npm install ts-react-pager
