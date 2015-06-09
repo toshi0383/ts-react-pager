@@ -1,6 +1,7 @@
 var React = require('react')
-module.exports = {
-  Pager: function(o) {
+module.exports = React.createClass({
+  render: function() {
+    var o = this.props.object
     var totalPageCount = Math.ceil(o.dataLength / o.pageSize)
     var handler = o.handler
     var currentPage = o.currentPage
@@ -38,4 +39,4 @@ module.exports = {
       </ul>
     )
   }
-}
+})
