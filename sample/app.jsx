@@ -1,3 +1,5 @@
+var Pager = require('../bin/pager').Pager
+var React = require('react')
 var data = ["apple", "banana", "grape"],
     handler = function() {console.log("test")}
 var App = React.createClass({

@@ -9,7 +9,7 @@ module.exports.Pager = React.createClass({
     )
   }
 })
-module.exports.getPager = function(o) {
+function getPager(o) {
   var totalPageCount = Math.ceil(o.dataLength / o.pageSize)
   var handler = o.handler
   var currentPage = o.currentPage
@@ -43,3 +43,5 @@ module.exports.getPager = function(o) {
   pageLinks.push(li)
   return pageLinks
 }
+
+module.exports.getPager = getPager
