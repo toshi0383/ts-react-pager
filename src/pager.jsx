@@ -15,14 +15,7 @@ function getPager(o) {
   var currentPage = o.currentPage
 
   var pageLinks = []
-  var back
-  if (currentPage > 1) {
-    var backPageNum = currentPage - 1
-    back = <li key='a' style={{cursor:'pointer'}} onClick={handler(backPageNum)}><a>«</a></li>
-  } else {
-    back = <li key='b' className="disabled"><a>«</a></li>
-  }
-  pageLinks.push(back)
+  pageLinks.push(getBackLiElement(currentPage, handler))
 
   for (var i = 0; i < totalPageCount; i++) {
     var pageNum = i + 1
@@ -34,15 +27,29 @@ function getPager(o) {
          key={i}><a>{pageNum}</a></li>
     )
   }
-  var li
+
+  pageLinks.push(getNextLiElement(totalPageCount, currentPage, handler))
+  return pageLinks
+}
+function getBackLiElement(currentPage, handler) {
+  var back
+  if (currentPage > 1) {
+    var backPageNum = currentPage - 1
+    back = <li key='a' style={{cursor:'pointer'}} onClick={handler(backPageNum)}><a>«</a></li>
+  } else {
+    back = <li key='b' className="disabled"><a>«</a></li>
+  }
+  return back
+}
+function getNextLiElement(totalPageCount, currentPage, handler) {
+  var next
   if (currentPage < totalPageCount) {
     var nextPageNum = currentPage + 1
-    li = <li key='c' style={{cursor:'pointer'}} onClick={handler(nextPageNum)}><a>»</a></li>
+    next = <li key='c' style={{cursor:'pointer'}} onClick={handler(nextPageNum)}><a>»</a></li>
   } else {
-    li = <li key='d' className="disabled"><a>»</a></li>
+    next = <li key='d' className="disabled"><a>»</a></li>
   }
-  pageLinks.push(li)
-  return pageLinks
+  return next
 }
 
 module.exports.getPager = getPager

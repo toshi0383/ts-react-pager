@@ -15,14 +15,7 @@ function getPager(o) {
   var currentPage = o.currentPage
 
   var pageLinks = []
-  var back
-  if (currentPage > 1) {
-    var backPageNum = currentPage - 1
-    back = React.createElement("li", {key: "a", style: {cursor:'pointer'}, onClick: handler(backPageNum)}, React.createElement("a", null, "«"))
-  } else {
-    back = React.createElement("li", {key: "b", className: "disabled"}, React.createElement("a", null, "«"))
-  }
-  pageLinks.push(back)
+  pageLinks.push(getBackLiElement(currentPage, handler))
 
   for (var i = 0; i < totalPageCount; i++) {
     var pageNum = i + 1
@@ -34,15 +27,29 @@ function getPager(o) {
          key: i}, React.createElement("a", null, pageNum))
     )
   }
-  var li
+
+  pageLinks.push(getNextLiElement(totalPageCount, currentPage, handler))
+  return pageLinks
+}
+function getBackLiElement(currentPage, handler) {
+  var back
+  if (currentPage > 1) {
+    var backPageNum = currentPage - 1
+    back = React.createElement("li", {key: "a", style: {cursor:'pointer'}, onClick: handler(backPageNum)}, React.createElement("a", null, "«"))
+  } else {
+    back = React.createElement("li", {key: "b", className: "disabled"}, React.createElement("a", null, "«"))
+  }
+  return back
+}
+function getNextLiElement(totalPageCount, currentPage, handler) {
+  var next
   if (currentPage < totalPageCount) {
     var nextPageNum = currentPage + 1
-    li = React.createElement("li", {key: "c", style: {cursor:'pointer'}, onClick: handler(nextPageNum)}, React.createElement("a", null, "»"))
+    next = React.createElement("li", {key: "c", style: {cursor:'pointer'}, onClick: handler(nextPageNum)}, React.createElement("a", null, "»"))
   } else {
-    li = React.createElement("li", {key: "d", className: "disabled"}, React.createElement("a", null, "»"))
+    next = React.createElement("li", {key: "d", className: "disabled"}, React.createElement("a", null, "»"))
   }
-  pageLinks.push(li)
-  return pageLinks
+  return next
 }
 
 module.exports.getPager = getPager
