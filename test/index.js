@@ -1,5 +1,5 @@
 var should = require('should'),
-    Pager = require('../build/pager').Pager,
+    Pager = require('../bin/pager').Pager,
     data = ["apple", "banana", "grape"],
     handler = function() {this.good}
 function good() {
