@@ -33,7 +33,9 @@ module.exports = {
     }
     pageLinks.push(li)
     return (
-      {pageLinks}
+      <div>
+        {pageLinks}
+      </div>
     )
   }
 }

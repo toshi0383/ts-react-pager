@@ -1,5 +1,5 @@
 var should = require('should'),
-    Pager = require('../pager').Pager
+    Pager = require('../build/pager').Pager
 describe('#Pager', function() {
   it('should be something', function() {
     var o = {
