@@ -21,5 +21,9 @@
   "license": "MIT",
   "dependencies": {
     "react": "^0.13.3"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5",
+    "should": "^6.0.3"
   }
 }
