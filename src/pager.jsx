@@ -1,7 +1,7 @@
 var React = require('react')
 module.exports.Pager = React.createClass({
   render: function() {
-    var pageLinks = this.getPager(this.props.object)
+    var pageLinks = getPager(this.props.object)
     return (
       <ul className="pagination">
         {pageLinks}
