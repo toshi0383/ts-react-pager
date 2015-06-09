@@ -3,7 +3,7 @@ Super simple pager component.
 
 ![screenshot](./resources/ss.png)
 
-*This sample uses [bootswatch theme](https://bootswatch.com/journal/)
+*This sample uses [bootswatch theme](https://bootswatch.com/journal/) for css.
 
 # install
 ```
