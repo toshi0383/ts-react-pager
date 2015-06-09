@@ -24,7 +24,7 @@ function getPager(o) {
       React.createElement("li", {style: {cursor:'pointer'}, 
          onClick: handler(pageNum), 
          className: aClassName, 
-         key: i + 1}, React.createElement("a", null, pageNum))
+         key: pageNum}, React.createElement("a", null, pageNum))
     )
   }
   pageLinks.push(getNextLiElement(totalPageCount, currentPage, handler))

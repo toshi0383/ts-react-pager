@@ -24,7 +24,7 @@ function getPager(o) {
       <li style={{cursor:'pointer'}}
          onClick={handler(pageNum)}
          className={aClassName}
-         key={i + 1}><a>{pageNum}</a></li>
+         key={pageNum}><a>{pageNum}</a></li>
     )
   }
   pageLinks.push(getNextLiElement(totalPageCount, currentPage, handler))
