@@ -1,5 +1,5 @@
 # ts-react-pager
-Super simple pager component.
+Super simple pagination component.
 
 ![screenshot](./resources/ss.png)
 
