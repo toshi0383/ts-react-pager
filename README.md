@@ -5,6 +5,9 @@ Super simple pager component.
 
 *This sample uses [bootswatch theme](https://bootswatch.com/journal/) for css.
 
+You can interact with this component on iOS browser, too !  
+I haven't check on Android yet.
+
 # install
 ```
 npm install ts-react-pager
