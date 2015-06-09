@@ -2,7 +2,7 @@
   "name": "ts-react-pager",
   "version": "0.1.4",
   "description": "Super simple pager component",
-  "main": "build/pager.js",
+  "main": "bin/pager.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
