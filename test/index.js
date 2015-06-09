@@ -1,12 +1,17 @@
 var should = require('should'),
-    Pager = require('../build/pager').Pager
+    Pager = require('../build/pager').Pager,
+    data = ["apple", "banana", "grape"],
+    handler = function() {this.good}
+function good() {
+  console.log("good")
+}
 describe('#Pager', function() {
   it('should be something', function() {
     var o = {
-      dataLength:this.props.ipas.length,
-      handler: this.handlePaging,
-      pageSize: this.props.pageSize,
-      currentPage: this.state.currentPage
+      dataLength:data.length,
+      handler: handler,
+      pageSize: 5,
+      currentPage: 1
     }
     console.log(Pager(o))
   });
