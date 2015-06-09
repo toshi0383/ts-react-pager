@@ -29,9 +29,13 @@ function getPager(o) {
   }
   pageLinks.push(getNextLiElement(totalPageCount, currentPage, handler))
 
-  // if this has more than 8 pages, abbreviate rest of them.
+  // if this has more than 8 pages, abbreviate rest of them
+  // and put '...' into middle of them.
+  var max = 9 - 1
+  var firstLimit = max / 2
+  var lastLimit = Number(max / 2) + 2
   var filtered = pageLinks.filter(function(e) {
-    return Number(e.key) > pageLinks.length - 6 || Number(e.key) < 4
+    return Number(e.key) > pageLinks.length - lastLimit || Number(e.key) < firstLimit
   })
   filtered[4] = (
     React.createElement("li", {className: "disabled", key: "4"}, React.createElement("a", null, "..."))
