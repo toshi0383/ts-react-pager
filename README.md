@@ -13,6 +13,7 @@ npm install ts-react-pager
 # usage
 
 ```
+var Pager = require('ts-react-pager').Pager
 var YourApp = React.createClass({
   render: function() {
     var o = {
