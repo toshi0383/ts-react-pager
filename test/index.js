@@ -13,19 +13,10 @@ var o = {
   pageSize: 1,
   currentPage: 1
 }
+var PagerFactory = React.createFactory(Pager);
 var p = React.createClass({
   render:function() {
-    return {type: Pager, props: {object:o}}
+    return PagerFactory({object:o})
   }
 })
-console.log(p.prototype.render())
-return
-describe('#Pager.type', function() {
-  it('should be ul', function() {
-    p.type.should.equal('ul')
-  });
-  it('should be ul', function() {
-    var children = p._store.props.children
-    children.length.should.equal(5)
-  });
-})
+// currently not tests here..
