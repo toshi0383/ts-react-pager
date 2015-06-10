@@ -18,6 +18,9 @@ npm install ts-react-pager
 ```
 var Pager = require('ts-react-pager').Pager
 var YourApp = React.createClass({
+  handlePaging: function(pageNum) {
+    this.setState({data:this.state.data, currentPage:pageNum})
+  },
   render: function() {
     var o = {
       dataLength:this.props.data.length,  // Your data's length.
