@@ -10,6 +10,11 @@ module.exports.Pager = React.createClass({displayName: "Pager",
     )
   }
 })
+function getHandler(pageNum, handler) {
+  return function() {
+    handler(pageNum)
+  }
+}
 function getPager(o) {
   var totalPageCount = Math.ceil(o.dataLength / o.pageSize)
   var handler = o.handler
@@ -23,7 +28,7 @@ function getPager(o) {
     var aClassName = pageNum == currentPage ? "active" : ""
     pageLinks.push(
       React.createElement("li", {style: {cursor:'pointer'}, 
-         onClick: handler(pageNum), 
+         onClick: getHandler(pageNum, handler), 
          className: aClassName, 
          key: pageNum}, React.createElement("a", null, pageNum))
     )
@@ -32,24 +37,40 @@ function getPager(o) {
 
   // if this has more than 8 pages, abbreviate rest of them
   // and put '...' into middle of them.
-  var max = 9 - 1
-  var firstLimit = max / 2
-  var lastLimit = Number(max / 2) + 2
-  var filtered = pageLinks.filter(function(e) {
-    return Number(e.key) > pageLinks.length - lastLimit || Number(e.key) < firstLimit
-  })
-  if (filtered.length > 8) {
-    filtered[4] = (
-      React.createElement("li", {className: "disabled", key: "4"}, React.createElement("a", null, "..."))
-    )
+  var maxPageDispNum = 6
+  if (totalPageCount <= maxPageDispNum) {
+    return pageLinks
   }
+  var offset = 1
+  if (currentPage < 4) {
+  // currentが前半3つに入ったらoffsetは1
+    offset = 1
+  } else if (currentPage > totalPageCount - 3) {
+  // currentが後半3つに入ったらoffsetはtotal - 6
+    offset = totalPageCount - 5
+  } else {
+  // それ以外はoffsetはcurrent - 2
+    offset = currentPage - 2
+  }
+  var lastKey = offset + 5
+  var filtered = pageLinks.filter(function(e) {
+    // should show
+    switch (Number(e.key)) {
+    case 0:
+    case totalPageCount + 1:
+      return true
+    default:
+      return Number(e.key) >= offset && Number(e.key) <= lastKey
+    }
+  })
   return filtered
 }
 function getBackLiElement(currentPage, handler) {
   var back
   if (currentPage > 1) {
     var backPageNum = currentPage - 1
-    back = React.createElement("li", {key: "0", style: {cursor:'pointer'}, onClick: handler(backPageNum)}, React.createElement("a", null, "«"))
+    back = React.createElement("li", {key: "0", style: {cursor:'pointer'}, 
+      onClick: getHandler(backPageNum, handler)}, React.createElement("a", null, "«"))
   } else {
     back = React.createElement("li", {key: "0", className: "disabled"}, React.createElement("a", null, "«"))
   }
@@ -59,7 +80,8 @@ function getNextLiElement(totalPageCount, currentPage, handler) {
   var next
   if (currentPage < totalPageCount) {
     var nextPageNum = currentPage + 1
-    next = React.createElement("li", {key: totalPageCount + 1, style: {cursor:'pointer'}, onClick: handler(nextPageNum)}, React.createElement("a", null, "»"))
+    next = React.createElement("li", {key: totalPageCount + 1, style: {cursor:'pointer'}, 
+       onClick: getHandler(nextPageNum, handler)}, React.createElement("a", null, "»"))
   } else {
     next = React.createElement("li", {key: totalPageCount + 1, className: "disabled"}, React.createElement("a", null, "»"))
   }
@@ -19881,23 +19903,25 @@ process.umask = function() { return 0; };
 },{}],158:[function(require,module,exports){
 var Pager = require('../bin/pager').Pager
 var React = require('react')
-var data = ["apple", "banana", "grape"],
-    handler = function() {console.log("test")}
+var data = ["apple", "banana", "grape"]
 data = data.concat(["chocolate", "berry", "pine", "pumpkin", "carrot"])
 var App = React.createClass({displayName: "App",
   getInitialState: function() {
-    return {data:data}
+    return {data:data, currentPage:1}
+  },
+  handlePaging: function(pageNum) {
+    this.setState({data:this.state.data, currentPage:pageNum})
   },
   buttonHandler: function() {
     var d = this.state.data.slice(0, this.state.data.length - 1)
-    this.setState({data:d})
+    this.setState({data:d, currentPage:this.state.currentPage})
   },
   render: function() {
     var o = {
       dataLength:this.state.data.length,
-      handler: handler,
+      handler: this.handlePaging,
       pageSize: 1,
-      currentPage: 1
+      currentPage: this.state.currentPage
     }
     return (
       React.createElement("div", null, 
