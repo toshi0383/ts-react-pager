@@ -9,6 +9,11 @@ module.exports.Pager = React.createClass({
     )
   }
 })
+function getHandler(pageNum, handler) {
+  return function() {
+    handler(pageNum)
+  }
+}
 function getPager(o) {
   var totalPageCount = Math.ceil(o.dataLength / o.pageSize)
   var handler = o.handler
@@ -22,7 +27,7 @@ function getPager(o) {
     var aClassName = pageNum == currentPage ? "active" : ""
     pageLinks.push(
       <li style={{cursor:'pointer'}}
-         onClick={handler(pageNum)}
+         onClick={getHandler(pageNum, handler)}
          className={aClassName}
          key={pageNum}><a>{pageNum}</a></li>
     )
@@ -48,7 +53,8 @@ function getBackLiElement(currentPage, handler) {
   var back
   if (currentPage > 1) {
     var backPageNum = currentPage - 1
-    back = <li key='0' style={{cursor:'pointer'}} onClick={handler(backPageNum)}><a>«</a></li>
+    back = <li key='0' style={{cursor:'pointer'}}
+      onClick={getHandler(backPageNum, handler)}><a>«</a></li>
   } else {
     back = <li key='0' className="disabled"><a>«</a></li>
   }
@@ -58,7 +64,8 @@ function getNextLiElement(totalPageCount, currentPage, handler) {
   var next
   if (currentPage < totalPageCount) {
     var nextPageNum = currentPage + 1
-    next = <li key={totalPageCount + 1} style={{cursor:'pointer'}} onClick={handler(nextPageNum)}><a>»</a></li>
+    next = <li key={totalPageCount + 1} style={{cursor:'pointer'}}
+       onClick={getHandler(nextPageNum, handler)}><a>»</a></li>
   } else {
     next = <li key={totalPageCount + 1} className="disabled"><a>»</a></li>
   }
