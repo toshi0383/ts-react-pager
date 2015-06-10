@@ -49,7 +49,7 @@ function getPager(o) {
   // currentが後半3つに入ったらoffsetはtotal - 6
     offset = totalPageCount - 5
   } else {
-  //          offsetはcurrent - 2
+  // それ以外はoffsetはcurrent - 2
     offset = currentPage - 2
   }
   var lastKey = offset + 5
