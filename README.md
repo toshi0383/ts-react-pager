@@ -25,7 +25,7 @@ var YourApp = React.createClass({
     var o = {
       dataLength:this.props.data.length,  // Your data's length.
       handler: this.handlePaging,         // Gets called when page is changed. You must implement your own. Otherwise crashes.
-      pageSize: this.props.pageSize,      // Max display count of your data.
+      pageSize: this.props.pageSize,      // Max page number to display.
       currentPage: this.state.currentPage // Your current page should be set in your state.
     }
     var pager = (<Pager object={o}>)
