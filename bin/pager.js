@@ -1,7 +1,7 @@
 var React = require('react')
 module.exports.Pager = React.createClass({displayName: "Pager",
   render: function() {
-    var pageLinks = getPager(this.props.object)
+    var pageLinks = getPager(this.props.object, this.props.maxPagerDispNum)
     return (
       React.createElement("ul", {className: "pagination"}, 
         pageLinks
@@ -14,7 +14,7 @@ function getHandler(pageNum, handler) {
     handler(pageNum)
   }
 }
-function getPager(o) {
+function getPager(o, n) {
   var totalPageCount = Math.ceil(o.dataLength / o.pageSize)
   var handler = o.handler
   var currentPage = o.currentPage
@@ -34,26 +34,28 @@ function getPager(o) {
   }
   pageLinks.push(getNextLiElement(totalPageCount, currentPage, handler))
 
-  // if this has more than 8 pages, abbreviate rest of them
-  // and put '...' into middle of them.
-  var maxPageDispNum = 6
+  var maxPagerDispNum = n
+  maxPagerDispNum = maxPagerDispNum ? maxPagerDispNum : 3
+  var maxPageDispNum = Math.min(3, Number(maxPagerDispNum))
   if (totalPageCount <= maxPageDispNum) {
     return pageLinks
   }
   var offset = 1
-  if (currentPage < 4) {
-  // currentが前半3つに入ったらoffsetは1
+  var firstHalf = Math.round(maxPageDispNum / 2)// '前半'を定義
+  var lastHalf  = Math.round(totalPageCount - firstHalf + 1)// '後半'を定義
+  if (currentPage <= firstHalf) {
+  // currentが前半に入ったらoffsetは1
     offset = 1
-  } else if (currentPage > totalPageCount - 3) {
-  // currentが後半3つに入ったらoffsetはtotal - 6
-    offset = totalPageCount - 5
+  } else if (currentPage >= lastHalf) {
+  // currentが後半に入ったらoffsetはtotal - maxPageDispNum + 1
+    offset = totalPageCount - maxPageDispNum
   } else {
-  // それ以外はoffsetはcurrent - 2
-    offset = currentPage - 2
+  // それ以外はoffsetはcurrent - 1
+    offset = currentPage - 1
   }
-  var lastKey = offset + 5
+  var lastKey = offset + maxPageDispNum - 1
   var filtered = pageLinks.filter(function(e) {
-    // should show
+    // return true if it should be present
     switch (Number(e.key)) {
     case 0:
     case totalPageCount + 1:

@@ -1,7 +1,7 @@
 var React = require('react')
 module.exports.Pager = React.createClass({
   render: function() {
-    var pageLinks = getPager(this.props.object)
+    var pageLinks = getPager(this.props.object, this.props.maxPagerDispNum)
     return (
       <ul className="pagination">
         {pageLinks}
@@ -14,7 +14,7 @@ function getHandler(pageNum, handler) {
     handler(pageNum)
   }
 }
-function getPager(o) {
+function getPager(o, n) {
   var totalPageCount = Math.ceil(o.dataLength / o.pageSize)
   var handler = o.handler
   var currentPage = o.currentPage
@@ -34,7 +34,9 @@ function getPager(o) {
   }
   pageLinks.push(getNextLiElement(totalPageCount, currentPage, handler))
 
-  var maxPageDispNum = Math.min(3, Number(this.props.maxPagerDispNum))
+  var maxPagerDispNum = n
+  maxPagerDispNum = maxPagerDispNum ? maxPagerDispNum : 3
+  var maxPageDispNum = Math.min(3, Number(maxPagerDispNum))
   if (totalPageCount <= maxPageDispNum) {
     return pageLinks
   }
