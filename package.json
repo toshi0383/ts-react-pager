@@ -4,7 +4,7 @@
   "description": "Super simple pager component",
   "main": "bin/pager.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/mocha/bin/mocha --reporter list test/index.js"
   },
   "repository": {
     "type": "git",
@@ -12,7 +12,8 @@
   },
   "keywords": [
     "node",
-    "react"
+    "react",
+    "react-component"
   ],
   "author": "toshi0383 <t.suzuki326@gmail.com> (https://github.com/toshi0383)",
   "bugs": {
