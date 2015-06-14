@@ -12,7 +12,8 @@
   },
   "keywords": [
     "node",
-    "react"
+    "react",
+    "react-component"
   ],
   "author": "toshi0383 <t.suzuki326@gmail.com> (https://github.com/toshi0383)",
   "bugs": {
