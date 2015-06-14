@@ -18,7 +18,7 @@ var App = React.createClass({
       dataLength:this.state.data.length,
       handler: this.handlePaging,
       pageSize: 1,
-      maxPagerDispNum: 6,
+      maxPagerDispNum: 5,
       currentPage: this.state.currentPage
     }
     return (
