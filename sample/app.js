@@ -49,7 +49,7 @@ function getPager(o) {
     offset = 1
   } else if (currentPage >= lastHalf) {
   // currentが後半に入ったらoffsetはtotal - maxPageDispNum + 1
-    offset = totalPageCount - maxPageDispNum
+    offset = totalPageCount - maxPageDispNum + 1
   } else {
   // それ以外はoffsetはcurrent - 1
     offset = currentPage - 1
