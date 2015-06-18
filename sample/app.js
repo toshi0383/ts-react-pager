@@ -4,7 +4,7 @@ module.exports.Pager = React.createClass({displayName: "Pager",
   render: function() {
     var pageLinks = getPager(this.props.object)
     return (
-      React.createElement("ul", {className: "pagination"}, 
+      React.createElement("ul", {className: this.props.class}, 
         pageLinks
       )
     )
@@ -19929,7 +19929,7 @@ var App = React.createClass({displayName: "App",
     return (
       React.createElement("div", null, 
       React.createElement("button", {onClick: this.buttonHandler}, "slice"), 
-      React.createElement(Pager, {object: o})
+      React.createElement(Pager, {class: "pagination", object: o})
       )
     )
   }

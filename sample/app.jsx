@@ -24,7 +24,7 @@ var App = React.createClass({
     return (
       <div>
       <button onClick={this.buttonHandler}>slice</button>
-      <Pager object={o} />
+      <Pager class="pagination" object={o} />
       </div>
     )
   }
