@@ -29,7 +29,7 @@ var YourApp = React.createClass({
       maxPagerDispNum: 5,                 // (Optional) Max number of 'pager' to display. (default is 3)
       currentPage: this.state.currentPage // Your current page should be set in your state.
     }
-    var pager = (<Pager object={o}>)
+    var pager = (<Pager class="pagination" cobject={o}>)
     return (
       <div>
         {pager}
