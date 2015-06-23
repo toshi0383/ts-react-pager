@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/ts-react-pager.svg)](http://badge.fury.io/js/ts-react-pager)
+
 # ts-react-pager
 Super simple pagination component.
 
