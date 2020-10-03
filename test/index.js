@@ -14,7 +14,7 @@ function getObject(data, num) {
   return o
 }
 function good() {
-  console.log("good")
+  console.log("very good")
 }
 
 var p = Pager(getObject(data, 6))
